@@ -5,9 +5,10 @@ namespace api.Mappers
 {
     public static class StockMappers
     {
-        public static StockDTO ToStockDTO(this Stock stockModel) 
+        public static StockDTO ToStockDTO(this Stock stockModel)
         {
-            return new StockDTO {
+            return new StockDTO
+            {
                 Id = stockModel.Id,
                 Symbol = stockModel.Symbol,
                 CompanyName = stockModel.CompanyName,
@@ -19,9 +20,9 @@ namespace api.Mappers
             };
         }
 
-        public static Stock ToStockFromCreateStockDTO(this CreateStockRequestDTO stockRequestDTO) 
+        public static Stock ToStockFromCreateStockDTO(this CreateStockRequestDTO stockRequestDTO)
         {
-            return new Stock 
+            return new Stock
             {
                 Symbol = stockRequestDTO.Symbol,
                 CompanyName = stockRequestDTO.CompanyName,
@@ -29,6 +30,19 @@ namespace api.Mappers
                 LastDiv = stockRequestDTO.LastDiv,
                 Industry = stockRequestDTO.Industry,
                 MarketCap = stockRequestDTO.MarketCap
+            };
+        }
+        
+        public static Stock ToStockFromFMP(this FMPStock fmpStock)
+        {
+            return new Stock
+            {
+                Symbol = fmpStock.symbol,
+                CompanyName = fmpStock.companyName,
+                Purchase = (decimal)fmpStock.price,
+                LastDiv = (decimal)fmpStock.lastDiv,
+                Industry = fmpStock.industry,
+                MarketCap = fmpStock.mktCap
             };
         }
     }
